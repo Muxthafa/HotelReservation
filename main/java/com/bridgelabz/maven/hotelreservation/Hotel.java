@@ -1,5 +1,7 @@
 package com.bridgelabz.maven.hotelreservation;
 
+import java.util.Date;
+
 /**
  * class to create hotels
  * @author mohammad.musthafa_ym
@@ -33,7 +35,9 @@ public class Hotel
 
 	@Override
 	public String toString() {
-		return "Hotel [name=" + hotelName + ", rates=" + weekdayRateRegular + "]";
+		return "Hotel [hotelName=" + hotelName + ", weekdayRateRegular=" + weekdayRateRegular+"]";
 	}
+
+	
     
 }
