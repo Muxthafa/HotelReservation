@@ -26,7 +26,7 @@ public class HotelReservationSystemTest
 	
     @Before
 	public void CheckIfHotelIsAdded() {
-		reservation.addhotels("Bridgewood", 140, 50,4);
+		reservation.addhotels("Bridgewood", 150, 50,4);
 		reservation.addhotels("Lakewood", 110, 90,3);
 		reservation.addhotels("Ridgewood", 220, 150,5);
 		Assert.assertEquals("Bridgewood", reservation.checkHotel("Bridgewood"));
