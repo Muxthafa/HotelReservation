@@ -90,6 +90,18 @@ public class HotelReservationSystem {
 		}
 		return cheapestHighestRating.getHotelName();
 	}
+	
+	public String bestRatedHotel() {
+		int bestRated=0;
+		String hotelBestRated = null;
+		for (Hotel hotel : hotelDetails) {
+			if(hotel.getRating() > bestRated) {
+				bestRated=hotel.getRating();
+				hotelBestRated=hotel.getHotelName();
+			}
+		}
+		return hotelBestRated;
+	}
 
 	/**
 	 * @method to check if hotel is present

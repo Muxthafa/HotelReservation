@@ -40,5 +40,11 @@ public class HotelReservationSystemTest
     	String result = reservation.cheapestHotel(reservation.getDate("11-09-2020"),reservation.getDate("12-09-2020"));
 		assertEquals("Bridgewood",result);
     }
+    
+    @Test
+    public void checkBestRatedHotel() {
+    	String result = reservation.bestRatedHotel();
+		assertEquals("Ridgewood",result);
+    }
 
 }
