@@ -33,6 +33,7 @@ public class HotelReservationSystemTest
 		Assert.assertEquals("Lakewood", reservation.checkHotel("Lakewood"));
 		Assert.assertEquals("Ridgewood", reservation.checkHotel("Ridgewood"));
 	}
+<<<<<<< HEAD
     
     @Test
     public void checkCheapestHotelForGivnRange() {
@@ -45,4 +46,12 @@ public class HotelReservationSystemTest
 //    	String result = reservation.cheapestHotel(reservation.getDate("9-09-2020"),reservation.getDate("12-09-2020"));
 //		assertEquals("Lakewood",result);
 //    }
+=======
+    
+    @Test
+    public void checkCheapestHotelForGivnRangeOnWeekdayAndWeekend() {
+    	String result = reservation.cheapestHotel(reservation.getDate("11-09-2020"),reservation.getDate("12-09-2020"));
+		assertEquals("Bridgewood",result);
+    }
+>>>>>>> cheapestHotelWeekendWeekday
 }
