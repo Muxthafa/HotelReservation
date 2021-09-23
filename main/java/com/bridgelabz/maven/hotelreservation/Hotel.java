@@ -11,12 +11,16 @@ public class Hotel
     private String hotelName;
     private double weekdayRateRegular;
     private double weekendRateRegular;
+    private double weekendRateReward;
+    private double weekdayRateReward;
     private int rating;
     
-    public Hotel(String hotelName, Double weekdayRateRegular,Double weekendRateRegular,int rating) {
+    public Hotel(String hotelName, Double weekdayRateRegular,Double weekendRateRegular,int rating,double weekdayRateReward,double weekendRateReward) {
     	this.hotelName = hotelName;
     	this.weekdayRateRegular = weekdayRateRegular;
     	this.weekendRateRegular = weekendRateRegular;
+    	this.weekendRateReward = weekendRateReward;
+    	this.weekdayRateReward= weekdayRateReward;
     	this.rating = rating;
     }
 
@@ -40,6 +44,22 @@ public class Hotel
 		this.rating = rating;
 	}
 
+	public double getWeekendRateReward() {
+		return weekendRateReward;
+	}
+
+	public void setWeekendRateReward(double weekendRateReward) {
+		this.weekendRateReward = weekendRateReward;
+	}
+
+	public double getWeekdayRateReward() {
+		return weekdayRateReward;
+	}
+
+	public void setWeekdayRateReward(double weekdayRateReward) {
+		this.weekdayRateReward = weekdayRateReward;
+	}
+
 	public void setWeekdayRateRegular(double weekdayRateRegular) {
 		this.weekdayRateRegular = weekdayRateRegular;
 	}
@@ -54,6 +74,9 @@ public class Hotel
 
 	@Override
 	public String toString() {
-		return "Hotel [hotelName=" + hotelName + ", weekdayRateRegular=" + weekdayRateRegular+"]";
-	} 
+		return "Hotel [hotelName=" + hotelName + ", weekdayRateRegular=" + weekdayRateRegular + ", weekendRateRegular="
+				+ weekendRateRegular + ", weekendRateReward=" + weekendRateReward + ", weekdayRateReward="
+				+ weekdayRateReward + ", rating=" + rating + "]";
+	}
+
 }

@@ -33,8 +33,8 @@ public class HotelReservationSystem {
 	 * @param hotelName
 	 * @param weekdayRateRegular
 	 */
-	public void addhotels(String hotelName, double weekdayRateRegular, double weekendRateRegular, int rating) {
-		hotelDetails.add(new Hotel(hotelName, weekdayRateRegular, weekendRateRegular, rating));
+	public void addhotels(String hotelName, double weekdayRateRegular, double weekendRateRegular, int rating, double weekdayRateReward,double weekendRateReward) {
+		hotelDetails.add(new Hotel(hotelName, weekdayRateRegular, weekendRateRegular, rating,weekdayRateReward,weekendRateReward));
 	}
 
 	/**
