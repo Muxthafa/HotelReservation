@@ -79,11 +79,13 @@ public class HotelReservationSystem {
 	 * @return
 	 */
 	public Date getDate(String date) {
+		
     	try {
 			return new SimpleDateFormat("dd-MM-yyyy").parse(date);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+    	
     	return null;
 	}
 }

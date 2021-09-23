@@ -46,6 +46,5 @@ public class Hotel
 	@Override
 	public String toString() {
 		return "Hotel [hotelName=" + hotelName + ", weekdayRateRegular=" + weekdayRateRegular+"]";
-	}
-    
+	} 
 }
