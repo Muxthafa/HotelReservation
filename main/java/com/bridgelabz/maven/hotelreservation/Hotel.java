@@ -5,7 +5,6 @@ import java.util.Date;
 /**
  * class to create hotels
  * @author mohammad.musthafa_ym
- *
  */
 public class Hotel 
 {
@@ -19,28 +18,28 @@ public class Hotel
     	this.weekendRateRegular = weekendRateRegular;
     }
 
+	public String getHotelName() {
+		return hotelName;
+	}
+
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
+	}
+
+	public double getWeekdayRateRegular() {
+		return weekdayRateRegular;
+	}
+
+	public void setWeekdayRateRegular(double weekdayRateRegular) {
+		this.weekdayRateRegular = weekdayRateRegular;
+	}
+
 	public double getWeekendRateRegular() {
 		return weekendRateRegular;
 	}
 
 	public void setWeekendRateRegular(double weekendRateRegular) {
 		this.weekendRateRegular = weekendRateRegular;
-	}
-
-	public String getName() {
-		return hotelName;
-	}
-
-	public void setName(String name) {
-		this.hotelName = name;
-	}
-
-	public Double getRates() {
-		return weekdayRateRegular;
-	}
-
-	public void setRates(Double rates) {
-		this.weekdayRateRegular = rates;
 	}
 
 	@Override
