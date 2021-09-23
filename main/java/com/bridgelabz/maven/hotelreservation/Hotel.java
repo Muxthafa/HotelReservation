@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * class to create hotels
- * @author mohammad.musthafa_ym
+ * @author Mohammad Musthafa
  */
 public class Hotel 
 {

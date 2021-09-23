@@ -19,98 +19,115 @@ import java.util.stream.Stream;
 
 /**
  * class to store different hotels
+ * 
  * @author mohammad.musthafa_ym
  */
 
 public class HotelReservationSystem {
 	private List<Hotel> hotelDetails = new ArrayList<Hotel>();
-	
-	SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy");	// Date format class
-	
+
+	SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy"); // Date format class
+
 	/**
 	 * @method to add hotel to the list
 	 * @param hotelName
 	 * @param weekdayRateRegular
 	 */
-	public void addhotels(String hotelName,double weekdayRateRegular,double weekendRateRegular, int rating) {
-		hotelDetails.add(new Hotel(hotelName,weekdayRateRegular,weekendRateRegular,rating));
+	public void addhotels(String hotelName, double weekdayRateRegular, double weekendRateRegular, int rating) {
+		hotelDetails.add(new Hotel(hotelName, weekdayRateRegular, weekendRateRegular, rating));
 	}
-	
+
 	/**
-	 * @method to find the cheapest hotel
+	 * @method to find the cheapest hotel with highest rating
 	 * @param date1(starting date)
-	 * @param date2(ending date)
+	 * @param date2(ending   date)
 	 * @return
 	 */
 	public String cheapestHotel(Date date1, Date date2) {
 		LocalDate startingDate = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		LocalDate endingDate = date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		int numOfDays = Period.between(startingDate, endingDate).getDays()+1;
+		int numOfDays = Period.between(startingDate, endingDate).getDays() + 1;
 
-		Map<String,Double> hotelPrice = new HashMap<String,Double>();			//map to store hotel with total price
-		
-		List<LocalDate> listOfDates = Stream.iterate(startingDate, date -> date.plusDays(1))		//list stores dates on range
-								.limit(numOfDays)
-								.collect(Collectors.toList());
-		
-		 
-		for(Hotel hotel : hotelDetails) {
+		Map<String, Double> hotelPrice = new HashMap<String, Double>(); // map to store hotel with total price
+
+		List<LocalDate> listOfDates = Stream.iterate(startingDate, date -> date.plusDays(1)) // list stores dates on
+																								// range
+				.limit(numOfDays).collect(Collectors.toList());
+
+		for (Hotel hotel : hotelDetails) {
 			double totalCost = 0;
-			for(LocalDate date : listOfDates) {
-				if(isWeekend(date))
-					totalCost += hotel.getWeekendRateRegular();					//add price of hotel during weekend
+			for (LocalDate date : listOfDates) {
+				if (isWeekend(date))
+					totalCost += hotel.getWeekendRateRegular(); // add price of hotel during weekend
 				else
-					totalCost += hotel.getWeekdayRateRegular();					//add price of hotel during weekday
+					totalCost += hotel.getWeekdayRateRegular(); // add price of hotel during weekday
 			}
 			hotelPrice.put(hotel.getHotelName(), totalCost);
 		}
-		
+
 		double minPrice = Collections.min(hotelPrice.values());
-		String hotel = hotelPrice.entrySet()
-						.stream()
-						.filter(entry -> minPrice == entry.getValue())
-						.map(Map.Entry::getKey)
-						.findFirst().get();
-		return hotel;
+
+		Map<String, Integer> maxRating = new HashMap<String, Integer>(); // map to store equal price hotels
+
+		for (Map.Entry map : hotelPrice.entrySet()) {
+			if ((double) map.getValue() == minPrice) {
+				maxRating.put((String) map.getKey(), null);
+			}
+		}
+
+		int max = 0;
+		Hotel cheapestHighestRating = null;
+
+		for (Hotel hotel : hotelDetails) {
+			for (Map.Entry map : maxRating.entrySet()) {
+				if (hotel.getHotelName().equals(map.getKey())) {
+					if (max < hotel.getRating()) {
+						max = hotel.getRating();
+						cheapestHighestRating = hotel; // the highest rated hotel reference among equal price hotels
+					}
+				}
+			}
+		}
+		return cheapestHighestRating.getHotelName();
 	}
-	
+
 	/**
 	 * @method to check if hotel is present
 	 * @param name
 	 * @return
 	 */
 	public String checkHotel(String name) {
-		for(Hotel hotel : hotelDetails) {
-			if(hotel.getHotelName().equals(name)) {
+		for (Hotel hotel : hotelDetails) {
+			if (hotel.getHotelName().equals(name)) {
 				return name;
 			}
 		}
 		return "notFound";
 	}
-	
+
 	/**
 	 * @method to convert string to date format
 	 * @param date
 	 * @return
 	 */
 	public Date getDate(String date) {
-		
-    	try {
+
+		try {
 			return new SimpleDateFormat("dd-MM-yyyy").parse(date);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-    	
-    	return null;
+
+		return null;
 	}
-	
+
 	/**
-	 * @method returns true if the day is weekend 
+	 * @method returns true if the day is weekend
 	 * @param date
 	 * @return
 	 */
 	public boolean isWeekend(LocalDate date) {
 		DayOfWeek day = DayOfWeek.of(date.get(ChronoField.DAY_OF_WEEK));
-        return day == DayOfWeek.SUNDAY || day == DayOfWeek.SATURDAY;
+		return day == DayOfWeek.SUNDAY || day == DayOfWeek.SATURDAY;
 	}
 }
