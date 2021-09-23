@@ -26,9 +26,9 @@ public class HotelReservationSystemTest
 	
     @Before
 	public void CheckIfHotelIsAdded() {
-		reservation.addhotels("Bridgewood", 345.56, 313.26);
-		reservation.addhotels("Lakewood", 145.56, 123.11);
-		reservation.addhotels("Ridgewood", 545.56, 456.13);
+		reservation.addhotels("Bridgewood", 345.56, 313.26,3);
+		reservation.addhotels("Lakewood", 145.56, 123.11,4);
+		reservation.addhotels("Ridgewood", 545.56, 456.13,5);
 		Assert.assertEquals("Bridgewood", reservation.checkHotel("Bridgewood"));
 		Assert.assertEquals("Lakewood", reservation.checkHotel("Lakewood"));
 		Assert.assertEquals("Ridgewood", reservation.checkHotel("Ridgewood"));
@@ -38,7 +38,7 @@ public class HotelReservationSystemTest
     @Test
     public void checkCheapestHotelForGivnRangeOnWeekdayAndWeekend() {
     	String result = reservation.cheapestHotel(reservation.getDate("11-09-2020"),reservation.getDate("12-09-2020"));
-		assertEquals("Bridgewood",result);
+		assertEquals("Lakewood",result);
     }
 
 }

@@ -11,11 +11,13 @@ public class Hotel
     private String hotelName;
     private double weekdayRateRegular;
     private double weekendRateRegular;
+    private int rating;
     
-    public Hotel(String hotelName, Double weekdayRateRegular,Double weekendRateRegular) {
+    public Hotel(String hotelName, Double weekdayRateRegular,Double weekendRateRegular,int rating) {
     	this.hotelName = hotelName;
     	this.weekdayRateRegular = weekdayRateRegular;
     	this.weekendRateRegular = weekendRateRegular;
+    	this.rating = rating;
     }
 
 	public String getHotelName() {
@@ -28,6 +30,14 @@ public class Hotel
 
 	public double getWeekdayRateRegular() {
 		return weekdayRateRegular;
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 
 	public void setWeekdayRateRegular(double weekdayRateRegular) {

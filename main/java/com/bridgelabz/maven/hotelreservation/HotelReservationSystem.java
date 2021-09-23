@@ -32,8 +32,8 @@ public class HotelReservationSystem {
 	 * @param hotelName
 	 * @param weekdayRateRegular
 	 */
-	public void addhotels(String hotelName,double weekdayRateRegular,double weekendRateRegular) {
-		hotelDetails.add(new Hotel(hotelName,weekdayRateRegular,weekendRateRegular));
+	public void addhotels(String hotelName,double weekdayRateRegular,double weekendRateRegular, int rating) {
+		hotelDetails.add(new Hotel(hotelName,weekdayRateRegular,weekendRateRegular,rating));
 	}
 	
 	/**
@@ -111,7 +111,6 @@ public class HotelReservationSystem {
 	 */
 	public boolean isWeekend(LocalDate date) {
 		DayOfWeek day = DayOfWeek.of(date.get(ChronoField.DAY_OF_WEEK));
-		System.out.println(day);
         return day == DayOfWeek.SUNDAY || day == DayOfWeek.SATURDAY;
 	}
 }
