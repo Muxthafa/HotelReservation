@@ -36,14 +36,20 @@ public class HotelReservationSystemTest
     
     
     @Test
-    public void checkCheapestHotelForGivenRange() {
-    	String result = reservation.cheapestHotel(reservation.getDate("11-09-2020"),reservation.getDate("12-09-2020"));
+    public void checkCheapestHotelForGivenRangeRegular() {
+    	String result = reservation.cheapestHotel(reservation.getDate("11-09-2020"),reservation.getDate("12-09-2020"),"Regular");
 		assertEquals("Bridgewood",result);
     }
     
     @Test
     public void checkBestRatedHotel() {
     	String result = reservation.bestRatedHotel();
+		assertEquals("Ridgewood",result);
+    }
+    
+    @Test
+    public void checkCheapestHotelForGivenRangeReward() {
+    	String result = reservation.cheapestHotel(reservation.getDate("11-09-2020"),reservation.getDate("12-09-2020"),"Reward");
 		assertEquals("Ridgewood",result);
     }
 

@@ -38,12 +38,12 @@ public class HotelReservationSystem {
 	}
 
 	/**
-	 * @method to find the cheapest hotel with highest rating
+	 * @method to find the cheapest hotel for regular as well as reward customers
 	 * @param date1(starting date)
 	 * @param date2(ending   date)
 	 * @return
 	 */
-	public String cheapestHotel(Date date1, Date date2) {
+	public String cheapestHotel(Date date1, Date date2, String customerType) {
 		LocalDate startingDate = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		LocalDate endingDate = date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		int numOfDays = Period.between(startingDate, endingDate).getDays() + 1;
@@ -57,16 +57,24 @@ public class HotelReservationSystem {
 		for (Hotel hotel : hotelDetails) {
 			double totalCost = 0;
 			for (LocalDate date : listOfDates) {
-				if (isWeekend(date))
-					totalCost += hotel.getWeekendRateRegular(); // add price of hotel during weekend
-				else
-					totalCost += hotel.getWeekdayRateRegular(); // add price of hotel during weekday
+				if (isWeekend(date)) {
+					if(customerType.equals("Regular"))
+						totalCost += hotel.getWeekendRateRegular(); // add price of hotel during weekend
+					else
+						totalCost += hotel.getWeekendRateReward(); // add price of hotel during weekday
+				}else {
+					if(customerType.equals("Reward"))
+						totalCost += hotel.getWeekdayRateReward(); // add price of hotel during weekend
+					else
+						totalCost += hotel.getWeekdayRateRegular(); // add price of hotel during weekday
+					
+				}
+					
 			}
 			hotelPrice.put(hotel.getHotelName(), totalCost);
 		}
 
 		double minPrice = Collections.min(hotelPrice.values());
-
 		Map<String, Integer> maxRating = new HashMap<String, Integer>(); // map to store equal price hotels
 
 		for (Map.Entry map : hotelPrice.entrySet()) {
@@ -77,7 +85,8 @@ public class HotelReservationSystem {
 
 		int max = 0;
 		Hotel cheapestHighestRating = null;
-
+		
+		
 		for (Hotel hotel : hotelDetails) {
 			for (Map.Entry map : maxRating.entrySet()) {
 				if (hotel.getHotelName().equals(map.getKey())) {
